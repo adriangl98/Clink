@@ -8,6 +8,13 @@ DateBrain dateBrain = DateBrain();
 DealBrain dealBrain = DealBrain();
 DateTime dateTime = DateTime.now();
 
+//COLOR PALLETTE
+var foregroundColor = Color.fromRGBO(30, 56, 136, 1);
+var contrastColor = Color.fromRGBO(71, 168, 189, 1);
+var option1Color = Color.fromRGBO(255, 204, 0, 1);
+var option2Color = Color.fromRGBO(242, 100, 25, 1);
+
+//old black Color.fromRGBO(49, 49, 45, 1)
 void main() {
   return runApp(
     MaterialApp(
@@ -18,11 +25,12 @@ void main() {
           title: const Text(
             'Clink!',
             style: TextStyle(
-              color: Color.fromRGBO(49, 49, 45, 1),
+              color: Color.fromRGBO(255, 204, 0, 1),
               fontWeight: FontWeight.bold,
+              fontSize: 30.0,
             ),
           ),
-          backgroundColor: Color.fromRGBO(248, 218, 111, 1),
+          backgroundColor: foregroundColor,
         ),
         body: DayPage(),
       ),
@@ -42,13 +50,14 @@ class _DayPageState extends State<DayPage> {
 
   SizedBox dayCard(String txt) {
     return SizedBox(
+      width: 45.0,
       child: Card(
         elevation: 0.0,
-        margin: EdgeInsets.only(left: 17.0),
-        color: Colors.white,
+        margin: EdgeInsets.only(left: 8.0),
+        color: foregroundColor,
         shape: CircleBorder(side: BorderSide.none),
         child: InkWell(
-          splashColor: Color.fromRGBO(248, 218, 111, 1),
+          splashColor: option1Color,
           onTap: () {
             setState(
               () {
@@ -75,7 +84,7 @@ class _DayPageState extends State<DayPage> {
                   dayOfDeal = 'Sunday';
                 } else if (txt == 'ED') {
                   _books = dealBrain.happyHourDeals();
-                  dayOfDeal = 'Everyday Deals';
+                  dayOfDeal = 'Everyday';
                 }
               },
             );
@@ -85,9 +94,9 @@ class _DayPageState extends State<DayPage> {
             child: Text(
               txt,
               style: TextStyle(
-                  color: Color.fromRGBO(248, 218, 111, 1),
+                  color: option1Color,
                   fontWeight: FontWeight.bold,
-                  fontSize: 27.0),
+                  fontSize: 25.0), //original is 27.0
             ),
           ),
         ),
