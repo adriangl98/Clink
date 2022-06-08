@@ -42,8 +42,9 @@ class _DayPageState extends State<DayPage> {
 
   SizedBox dayCard(String txt) {
     return SizedBox(
-      width: 55.0,
       child: Card(
+        elevation: 0.0,
+        margin: EdgeInsets.only(left: 17.0),
         color: Colors.white,
         shape: CircleBorder(side: BorderSide.none),
         child: InkWell(
@@ -51,30 +52,30 @@ class _DayPageState extends State<DayPage> {
           onTap: () {
             setState(
               () {
-                if (txt == 'Monday') {
+                if (txt == 'M') {
                   _books = dealBrain.mondayDeals();
-                  dayOfDeal = txt; // changes banner string day to txt
-                } else if (txt == 'Tuesday') {
+                  dayOfDeal = 'Monday'; // changes banner string day to txt
+                } else if (txt == 'T') {
                   _books = dealBrain.tuesdayDeals();
-                  dayOfDeal = txt;
-                } else if (txt == 'Wednesday') {
+                  dayOfDeal = 'Tuesday';
+                } else if (txt == 'W') {
                   _books = dealBrain.wednesdayDeals();
-                  dayOfDeal = txt;
-                } else if (txt == 'Thursday') {
+                  dayOfDeal = 'Wednesday';
+                } else if (txt == 'Th') {
                   _books = dealBrain.thursdayDeals();
-                  dayOfDeal = txt;
-                } else if (txt == 'Friday') {
+                  dayOfDeal = 'Thursday';
+                } else if (txt == 'F') {
                   _books = dealBrain.fridayDeals();
-                  dayOfDeal = txt;
-                } else if (txt == 'Saturday') {
+                  dayOfDeal = 'Friday';
+                } else if (txt == 'S') {
                   _books = dealBrain.saturdayDeals();
-                  dayOfDeal = txt;
-                } else if (txt == 'Sunday') {
+                  dayOfDeal = 'Saturday';
+                } else if (txt == 'Su') {
                   _books = dealBrain.sundayDeals();
-                  dayOfDeal = txt;
-                } else if (txt == 'Happy Hour') {
+                  dayOfDeal = 'Sunday';
+                } else if (txt == 'ED') {
                   _books = dealBrain.happyHourDeals();
-                  dayOfDeal = txt;
+                  dayOfDeal = 'Everyday Deals';
                 }
               },
             );
@@ -86,7 +87,7 @@ class _DayPageState extends State<DayPage> {
               style: TextStyle(
                   color: Color.fromRGBO(248, 218, 111, 1),
                   fontWeight: FontWeight.bold,
-                  fontSize: 33.5),
+                  fontSize: 27.0),
             ),
           ),
         ),
@@ -106,19 +107,19 @@ class _DayPageState extends State<DayPage> {
           ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: double.infinity,
-              maxHeight: 115.0,
+              maxHeight: 65.0,
             ),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                dayCard('HH'),
                 dayCard('M'),
                 dayCard('T'),
                 dayCard('W'),
-                dayCard('Tr'),
+                dayCard('Th'),
                 dayCard('F'),
                 dayCard('S'),
                 dayCard('Su'),
+                dayCard('ED'),
               ],
             ),
           ),
