@@ -42,14 +42,10 @@ class _DayPageState extends State<DayPage> {
 
   SizedBox dayCard(String txt) {
     return SizedBox(
-      height: 50.5,
-      width: 92,
+      width: 55.0,
       child: Card(
         color: Colors.white,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Color.fromRGBO(248, 218, 111, 1), width: 3),
-          borderRadius: BorderRadius.circular(80),
-        ),
+        shape: CircleBorder(side: BorderSide.none),
         child: InkWell(
           splashColor: Color.fromRGBO(248, 218, 111, 1),
           onTap: () {
@@ -83,11 +79,14 @@ class _DayPageState extends State<DayPage> {
               },
             );
           },
-          child: Container(
-            width: 90.0,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(txt),
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              txt,
+              style: TextStyle(
+                  color: Color.fromRGBO(248, 218, 111, 1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 33.5),
             ),
           ),
         ),
@@ -112,14 +111,14 @@ class _DayPageState extends State<DayPage> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                dayCard('Happy Hour'),
-                dayCard('Monday'),
-                dayCard('Tuesday'),
-                dayCard('Wednesday'),
-                dayCard('Thursday'),
-                dayCard('Friday'),
-                dayCard('Saturday'),
-                dayCard('Sunday'),
+                dayCard('HH'),
+                dayCard('M'),
+                dayCard('T'),
+                dayCard('W'),
+                dayCard('Tr'),
+                dayCard('F'),
+                dayCard('S'),
+                dayCard('Su'),
               ],
             ),
           ),
