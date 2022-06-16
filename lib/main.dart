@@ -96,7 +96,7 @@ class _DayPageState extends State<DayPage> {
               style: TextStyle(
                   color: option1Color,
                   fontWeight: FontWeight.bold,
-                  fontSize: 25.0), //original is 27.0
+                  fontSize: 21.0), //original is 25.0
             ),
           ),
         ),
