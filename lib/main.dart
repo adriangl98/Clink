@@ -22,14 +22,24 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text(
-            'Clink!',
-            style: TextStyle(
-              color: Color.fromRGBO(255, 204, 0, 1),
-              fontWeight: FontWeight.bold,
-              fontSize: 30.0,
-            ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/appLogo.png',
+                fit: BoxFit.cover,
+                height: 50,
+              ),
+            ],
           ),
+          // const Text(
+          //   'Clink!',
+          //   style: TextStyle(
+          //     color: Color.fromRGBO(255, 204, 0, 1),
+          //     fontWeight: FontWeight.bold,
+          //     fontSize: 30.0,
+          //   ),
+          // ),
           backgroundColor: foregroundColor,
         ),
         body: DayPage(),
@@ -48,55 +58,56 @@ class _DayPageState extends State<DayPage> {
       dealBrain.initialDeal(); // fills _books with current day deals
   dynamic dayOfDeal = dateBrain.currentDate(); // initial banner day string
 
-  SizedBox dayCard(String txt) {
-    return SizedBox(
-      width: 45.0,
-      child: Card(
-        elevation: 0.0,
-        margin: EdgeInsets.only(left: 8.0),
-        color: foregroundColor,
-        shape: CircleBorder(side: BorderSide.none),
-        child: InkWell(
-          splashColor: option1Color,
-          onTap: () {
-            setState(
-              () {
-                if (txt == 'M') {
-                  _books = dealBrain.mondayDeals();
-                  dayOfDeal = 'Monday'; // changes banner string day to txt
-                } else if (txt == 'T') {
-                  _books = dealBrain.tuesdayDeals();
-                  dayOfDeal = 'Tuesday';
-                } else if (txt == 'W') {
-                  _books = dealBrain.wednesdayDeals();
-                  dayOfDeal = 'Wednesday';
-                } else if (txt == 'Th') {
-                  _books = dealBrain.thursdayDeals();
-                  dayOfDeal = 'Thursday';
-                } else if (txt == 'F') {
-                  _books = dealBrain.fridayDeals();
-                  dayOfDeal = 'Friday';
-                } else if (txt == 'S') {
-                  _books = dealBrain.saturdayDeals();
-                  dayOfDeal = 'Saturday';
-                } else if (txt == 'Su') {
-                  _books = dealBrain.sundayDeals();
-                  dayOfDeal = 'Sunday';
-                } else if (txt == 'ED') {
-                  _books = dealBrain.happyHourDeals();
-                  dayOfDeal = 'Everyday';
-                }
-              },
-            );
-          },
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              txt,
-              style: TextStyle(
-                  color: option1Color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 21.0), //original is 25.0
+  Expanded dayCard(String txt) {
+    return Expanded(
+      child: Container(
+        height: MediaQuery.of(context).size.width * 0.17,
+        child: Card(
+          elevation: 0.0,
+          color: foregroundColor,
+          shape: CircleBorder(side: BorderSide.none),
+          child: InkWell(
+            splashColor: option1Color,
+            onTap: () {
+              setState(
+                () {
+                  if (txt == 'M') {
+                    _books = dealBrain.mondayDeals();
+                    dayOfDeal = 'Monday'; // changes banner string day to txt
+                  } else if (txt == 'T') {
+                    _books = dealBrain.tuesdayDeals();
+                    dayOfDeal = 'Tuesday';
+                  } else if (txt == 'W') {
+                    _books = dealBrain.wednesdayDeals();
+                    dayOfDeal = 'Wednesday';
+                  } else if (txt == 'Th') {
+                    _books = dealBrain.thursdayDeals();
+                    dayOfDeal = 'Thursday';
+                  } else if (txt == 'F') {
+                    _books = dealBrain.fridayDeals();
+                    dayOfDeal = 'Friday';
+                  } else if (txt == 'S') {
+                    _books = dealBrain.saturdayDeals();
+                    dayOfDeal = 'Saturday';
+                  } else if (txt == 'Su') {
+                    _books = dealBrain.sundayDeals();
+                    dayOfDeal = 'Sunday';
+                  } else if (txt == 'ED') {
+                    _books = dealBrain.happyHourDeals();
+                    dayOfDeal = 'Everyday';
+                  }
+                },
+              );
+            },
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                txt,
+                style: TextStyle(
+                    color: option1Color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 21.0), //original is 25.0
+              ),
             ),
           ),
         ),
@@ -113,24 +124,19 @@ class _DayPageState extends State<DayPage> {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: double.infinity,
-              maxHeight: 65.0,
-            ),
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                dayCard('M'),
-                dayCard('T'),
-                dayCard('W'),
-                dayCard('Th'),
-                dayCard('F'),
-                dayCard('S'),
-                dayCard('Su'),
-                dayCard('ED'),
-              ],
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              dayCard('M'),
+              dayCard('T'),
+              dayCard('W'),
+              dayCard('Th'),
+              dayCard('F'),
+              dayCard('S'),
+              dayCard('Su'),
+              dayCard('ED'),
+            ],
           ),
           dayBanner, // Creates day Banner
           Expanded(
